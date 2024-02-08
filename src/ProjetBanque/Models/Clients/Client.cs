@@ -11,16 +11,20 @@ namespace ProjetBanque.Models.Clients
 		public string Nom { get; set; } = nom;
 		public Banque Banque { get; set; }
 		public List<Compte> Comptes { get; set; } = [];
-	}
 
 		public override DTO ConvertirEnDTO()
 		{
-			return new ClientDTO{ NumeroClient = NumeroClient, Adresse = Adresse, Nom = Nom, Banque = RecupererBanqueDTO()};
-        }
+			return new ClientDTO { 
+				NumeroClient = NumeroClient, 
+				Adresse = Adresse, 
+				Nom = Nom, 
+				Banque = RecupererBanqueDTO() 
+			};
+		}
 
 		private BanqueDTO RecupererBanqueDTO()
 		{
 			return new BanqueDTO();
 		}
-    }
+	}
 }
