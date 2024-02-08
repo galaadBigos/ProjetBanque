@@ -1,6 +1,7 @@
-﻿using ProjetBanque.Models.Comptes;
+﻿using ProjetBanque.Models.Banques;
+using ProjetBanque.Models.Comptes;
 
-namespace ProjetBanque.Models
+namespace ProjetBanque.Models.Clients
 {
 	public class Client(string numeroClient, string adresse, string nom)
 	{

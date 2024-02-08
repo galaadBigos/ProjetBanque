@@ -1,6 +1,7 @@
-﻿using ProjetBanque.Models.Comptes;
+﻿using ProjetBanque.Models.Clients;
+using ProjetBanque.Models.Comptes;
 
-namespace ProjetBanque.Models
+namespace ProjetBanque.Models.Banques
 {
 	public class Banque
 	{
