@@ -1,9 +1,17 @@
-﻿namespace ProjetBanque.Models.Comptes
+﻿using ProjetBanque.dto;
+
+namespace ProjetBanque.Models.Comptes
 {
 	public class CompteAvecDecouvert(string numeroCompte, double decouvertAutorise) : Compte(numeroCompte)
 	{
 		public double DecouvertAutorise { get; set; } = decouvertAutorise;
-		public override double? Debiter(double montant)
+
+        public override DTO ConvertirEnDTO()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override double? Debiter(double montant)
 		{
 			if (EstDebitable(montant))
 				return Solde -= montant;

@@ -1,8 +1,7 @@
 ﻿namespace ProjetBanque.dto
 {
-	public class CompteSansDecouvertDTO
+	public class CompteSansDecouvertDTO : CompteDTO
 	{
-		public string NumeroCompte { get; set; }
 
 		public CompteSansDecouvertDTO()
 		{
