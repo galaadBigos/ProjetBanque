@@ -9,14 +9,29 @@ namespace ProjetBanque.Models.Banques
 		public List<Compte> Comptes { get; set; } = [];
 
 		public double? Retrait(string numeroCompte, string nomClient, double montant)
-			=> Clients.Find(c => c.Nom == nomClient)?
-				.Comptes.Find(c => c.NumeroCompte == numeroCompte)?
-				.Debiter(montant);
+		{
+			Client? client = RecupererClient(nomClient);
+
+			if (client is not null)
+				return RecupererCompte(client, numeroCompte)?.Debiter(montant);
+
+			return null;
+		}
 
 		public double? Depot(string numeroCompte, string nomClient, double montant)
-			=> Clients.Find(c => c.Nom == nomClient)?
-				.Comptes.Find(c => c.NumeroCompte == numeroCompte)?
-				.Crediter(montant);
+		{
+			Client? client = RecupererClient(nomClient);
 
+			if (client is not null)
+				return RecupererCompte(client, numeroCompte)?.Crediter(montant);
+
+			return null;
+		}
+
+		private Client? RecupererClient(string nomClient)
+			=> Clients.Find(c => c.Nom == nomClient);
+
+		private Compte? RecupererCompte(Client client, string numeroCompte)
+			=> client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
 	}
 }
