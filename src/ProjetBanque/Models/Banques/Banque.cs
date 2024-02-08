@@ -5,8 +5,8 @@ namespace ProjetBanque.Models.Banques
 {
 	public class Banque
 	{
-		public List<Client> Clients { get; set; } = new List<Client>();
-		public List<Compte> Comptes { get; set; } = new List<Compte>();
+		public List<Client> Clients { get; set; } = [];
+		public List<Compte> Comptes { get; set; } = [];
 
 		public double? Retrait(string numeroCompte, string nomClient, double montant)
 		{
