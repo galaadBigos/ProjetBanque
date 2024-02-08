@@ -9,6 +9,6 @@ namespace ProjetBanque.Models.Clients
 		public string Adresse { get; set; } = adresse;
 		public string Nom { get; set; } = nom;
 		public Banque Banque { get; set; }
-		public List<Compte> Comptes { get; set; }
+		public List<Compte> Comptes { get; set; } = [];
 	}
 }
