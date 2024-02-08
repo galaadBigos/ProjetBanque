@@ -12,6 +12,6 @@
 		}
 
 		private bool EstDebitable(double montant)
-			=> Solde - montant > DecouvertAutorise;
+			=> Solde - montant >= 0 - DecouvertAutorise;
 	}
 }
