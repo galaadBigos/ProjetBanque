@@ -1,10 +1,11 @@
-﻿using ProjetBanque.dto;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.dto;
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Models.Banques
 {
-	public class Banque : IEntite
+	public class Banque : IEntite, IBanque
 	{
 		public List<Client> Clients { get; set; } = [];
 		public List<Compte> Comptes { get; set; } = [];
@@ -35,19 +36,19 @@ namespace ProjetBanque.Models.Banques
 		private Compte? RecupererCompte(Client client, string numeroCompte)
 			=> client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
 
-        public override DTO ConvertirEnDTO()
-        {
-            return new BanqueDTO {Clients = GetClientDTO(), Comptes = GetCompteDTO()};
-        }
+		public override DTO ConvertirEnDTO()
+		{
+			return new BanqueDTO { Clients = GetClientDTO(), Comptes = GetCompteDTO() };
+		}
 
 		private List<ClientDTO> GetClientDTO()
 		{
 			return new List<ClientDTO>();
 		}
 
-        private List<CompteDTO> GetCompteDTO()
-        {
-            return new List<CompteDTO>();
-        }
-    }
+		private List<CompteDTO> GetCompteDTO()
+		{
+			return new List<CompteDTO>();
+		}
+	}
 }
