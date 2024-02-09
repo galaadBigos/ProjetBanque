@@ -70,5 +70,49 @@ namespace ProjetBanqueTest.UnitTests.Models.BanqueTests
             montantDeposer.Should().Be(montant);
             compteMock.Object.Solde.Should().Be(soldeOrigine + montant);
         }
+
+        [TestMethod]
+        [DataRow("123456789", "Metz", "John Doe", "987654321", 500, "987654322")]
+        public void Depot_DemandeDepotSurCompteInexistant_RetourneNull(
+            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string compteInexistant
+        )
+        {
+            // Arrange
+            Banque banque = new();
+
+            Client client = new(clientNumero, clientAdresse, clientNom);
+            Mock<Compte> compteMock = new(compteNumero);
+
+            client.Comptes.Add(compteMock.Object);
+            banque.Clients.Add(client);
+
+            // Act
+            double? montantDeposer = banque.Depot("987654322", clientNom, montant);
+
+            // Assert
+            montantDeposer.Should().BeNull();
+        }
+
+        [TestMethod]
+        [DataRow("123456789", "Metz", "John Doe", "987654321", 500, "Bob")]
+        public void Depot_DemandeDepotSurClientInexistant_RetourneNull(
+            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string clientInexistant
+        )
+        {
+            // Arrange
+            Banque banque = new();
+
+            Client client = new(clientNumero, clientAdresse, clientNom);
+            Mock<Compte> compteMock = new(compteNumero);
+
+            client.Comptes.Add(compteMock.Object);
+            banque.Clients.Add(client);
+
+            // Act
+            double? montantDeposer = banque.Depot(compteNumero, clientInexistant, montant);
+
+            // Assert
+            montantDeposer.Should().BeNull();
+        }
     }
 }
