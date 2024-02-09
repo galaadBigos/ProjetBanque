@@ -17,8 +17,8 @@ namespace ProjetBanqueTest.UnitTests.Models.BanqueTests
             Banque banque = new Banque();
 
             // Act
-            List<Client> clients = banque.Clients;
-            List<Compte> comptes = banque.Comptes;
+            List<IClient> clients = banque.Clients;
+            List<ICompte> comptes = banque.Comptes;
 
             // Assert
             clients.Should().HaveCount(0);
