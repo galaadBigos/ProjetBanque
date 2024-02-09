@@ -45,12 +45,12 @@ namespace ProjetBanque.Models.Banques
 
 		private List<ClientDTO> GetClientDTO()
 		{
-			return new List<ClientDTO>();
+			return [];
 		}
 
 		private List<CompteDTO> GetCompteDTO()
 		{
-			return new List<CompteDTO>();
+			return [];
 		}
 	}
 }
