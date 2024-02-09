@@ -6,6 +6,6 @@ namespace ProjetBanque.Abstractions.Services
 	{
 		List<ClientDTO> RecupererCLientsDTO();
 		List<CompteDTO> RecupererComptesDTO();
-		List<CompteDTO> RecupererComptesDTOParClient(string numeroClient);
+		List<CompteDTO>? RecupererComptesDTOParClient(string numeroClient);
 	}
 }

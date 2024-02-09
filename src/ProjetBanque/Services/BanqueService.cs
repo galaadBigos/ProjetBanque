@@ -27,11 +27,15 @@ namespace ProjetBanque.Services
 			return comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList();
 		}
 
-		public List<CompteDTO> RecupererComptesDTOParClient(string numeroClient)
+		public List<CompteDTO>? RecupererComptesDTOParClient(string numeroClient)
 		{
 			var comptes = _banqueDAO.RecupererComptesParClient(numeroClient);
 
-			return comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList();
+			if(comptes != null)
+				return comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList() ?? null;
+			
+			return null;
+
 		}
 	}
 }
