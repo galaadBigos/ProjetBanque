@@ -1,4 +1,4 @@
-﻿using ProjetBanque.Abstractions;
+﻿using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Banques;
 
 namespace ProjetBanque.Factories

@@ -1,4 +1,4 @@
-﻿using ProjetBanque.Abstractions;
+﻿using ProjetBanque.Abstractions.Models;
 using ProjetBanque.dto;
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
