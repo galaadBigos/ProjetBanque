@@ -1,18 +1,17 @@
 ﻿using ProjetBanque.Abstractions.Models;
 using ProjetBanque.dto;
-using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Models.Banques
 {
 	public class Banque : IEntite, IBanque
 	{
-		public List<Client> Clients { get; set; } = [];
-		public List<Compte> Comptes { get; set; } = [];
+		public List<IClient> Clients { get; set; } = [];
+		public List<ICompte> Comptes { get; set; } = [];
 
 		public double? Retrait(string numeroCompte, string nomClient, double montant)
 		{
-			Client? client = RecupererClient(nomClient);
+			IClient? client = RecupererClient(nomClient);
 
 			if (client is not null)
 				return RecupererCompte(client, numeroCompte)?.Debiter(montant);
@@ -22,7 +21,7 @@ namespace ProjetBanque.Models.Banques
 
 		public double? Depot(string numeroCompte, string nomClient, double montant)
 		{
-			Client? client = RecupererClient(nomClient);
+			IClient? client = RecupererClient(nomClient);
 
 			if (client is not null)
 				return RecupererCompte(client, numeroCompte)?.Crediter(montant);
@@ -30,15 +29,17 @@ namespace ProjetBanque.Models.Banques
 			return null;
 		}
 
-		private Client? RecupererClient(string nomClient)
+		private IClient? RecupererClient(string nomClient)
 			=> Clients.Find(c => c.Nom == nomClient);
 
-		private Compte? RecupererCompte(Client client, string numeroCompte)
+		private Compte? RecupererCompte(IClient client, string numeroCompte)
 			=> client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
 
 		public override DTO ConvertirEnDTO()
 		{
-			return new BanqueDTO { Clients = GetClientDTO(), Comptes = GetCompteDTO() };
+			List<ClientDTO> clientsDTO = Clients.Select(c => (ClientDTO)c.ConvertirEnDTO()).ToList();
+
+			return new BanqueDTO { Clients = clientsDTO, Comptes = GetCompteDTO() };
 		}
 
 		private List<ClientDTO> GetClientDTO()

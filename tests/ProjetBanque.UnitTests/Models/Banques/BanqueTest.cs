@@ -1,8 +1,9 @@
 using FluentAssertions;
+using Moq;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Banques;
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
-using Moq;
 
 namespace ProjetBanqueTest.UnitTests.Models.BanqueTests
 {
