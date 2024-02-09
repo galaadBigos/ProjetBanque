@@ -2,7 +2,7 @@
 
 namespace ProjetBanque.Models.Comptes
 {
-	public abstract class Compte(string numeroCompte)
+	public abstract class Compte(string numeroCompte) : IEntite
 	{
 		public double Solde { get; protected set; } = 0;
 		public string NumeroCompte { get; protected set; } = numeroCompte;
