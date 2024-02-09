@@ -1,13 +1,11 @@
 ﻿using ProjetBanque.dto;
-using ProjetBanque.Models.Clients;
-using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Abstractions.Models
 {
 	public interface IBanque
 	{
-		List<Client> Clients { get; set; }
-		List<Compte> Comptes { get; set; }
+		List<IClient> Clients { get; set; }
+		List<ICompte> Comptes { get; set; }
 
 		DTO ConvertirEnDTO();
 		double? Depot(string numeroCompte, string nomClient, double montant);
