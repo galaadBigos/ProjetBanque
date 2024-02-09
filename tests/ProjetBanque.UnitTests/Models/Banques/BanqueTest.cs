@@ -25,22 +25,50 @@ namespace ProjetBanqueTest.UnitTests.Models.BanqueTests
         }
 
         [TestMethod]
-        public void Retrait_CompteExistantEtClientExistant_RetraitEffectue()
+        [DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
+        [DataRow("123", "M", "John", "987", 8000)]
+        public void Retrait_VerificationSiRetraitAppelDebiter_DebiterEffectue(
+            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
         {
             // Arrange
             Banque banque = new();
 
-            Client client = new("123456789", "Metz", "John Doe");
-            Mock<Compte> compteMock = new("123456789");
+            Client client = new(clientNumero, clientAdresse, clientNom);
+            Mock<Compte> compteMock = new(compteNumero);
 
             client.Comptes.Add(compteMock.Object);
             banque.Clients.Add(client);
 
             // Act
-            banque.Retrait("123456789", "John Doe", 500);
+            banque.Retrait(compteNumero, clientNom, montant);
 
             // Assert
-            compteMock.Verify(c => c.Debiter(500), Times.Once);
+            compteMock.Verify(c => c.Debiter(montant), Times.Once);
+        }
+
+        [TestMethod]
+        [DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
+        [DataRow("123", "M", "John", "987", 8000)]
+        public void Depot_DeposeXArgentSurUnCompte_MontantDeposerEgalMontantEtSoldePlusX(
+            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
+        {
+            // Arrange
+            Banque banque = new();
+
+            Client client = new(clientNumero, clientAdresse, clientNom);
+            Mock<Compte> compteMock = new(compteNumero);
+
+            client.Comptes.Add(compteMock.Object);
+            banque.Clients.Add(client);
+
+            double soldeOrigine = compteMock.Object.Solde;
+
+            // Act
+            double? montantDeposer = banque.Depot(compteNumero, clientNom, montant);
+
+            // Assert
+            montantDeposer.Should().Be(montant);
+            compteMock.Object.Solde.Should().Be(soldeOrigine + montant);
         }
     }
 }
