@@ -2,11 +2,5 @@
 {
 	public class CompteSansDecouvertDTO : CompteDTO
 	{
-
-		public CompteSansDecouvertDTO()
-		{
-		}
-
-
 	}
 }

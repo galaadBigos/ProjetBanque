@@ -1,16 +1,15 @@
-﻿using ProjetBanque.dto;
-using ProjetBanque.Models.Comptes;
+﻿using ProjetBanque.Abstractions.DTO;
+using ProjetBanque.Abstractions.Models;
 
-namespace ProjetBanque.Abstractions.Models
+namespace ProjetBanque.Abstractions
 {
 	public interface IClient
 	{
 		string Adresse { get; set; }
-		IBanque Banque { get; set; }
-		List<Compte> Comptes { get; set; }
+		List<ICompte> Comptes { get; set; }
 		string Nom { get; set; }
 		string NumeroClient { get; set; }
 
-		DTO ConvertirEnDTO();
+		IDTO ConvertirEnDTO();
 	}
 }

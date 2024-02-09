@@ -6,6 +6,6 @@ namespace ProjetBanque.Abstractions.DAO
 	{
 		List<ICompte> RecupererComptes();
 		List<IClient> RecupererClients();
-		List<ICompte> RecupererComptesParClient(string numeroClient);
+		List<ICompte>? RecupererComptesParClient(string numeroClient);
 	}
 }

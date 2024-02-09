@@ -1,11 +1,13 @@
-﻿using ProjetBanque.Abstractions.Models;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.Abstractions.DAO;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Banques;
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Data
 {
-	public class DbFake
+	public class DbFake : IDataBase
 	{
 		private IBanque _banque;
 		private List<IClient> _clients;
@@ -25,29 +27,19 @@ namespace ProjetBanque.Data
 
 			foreach (IClient client in _clients)
 			{
-				CompteAvecDecouvert compteAvecDecouvert = new("125", 500.0d)
-				{
-					Client = client,
-					Banque = _banque,
-				};
-				CompteSansDecouvert compteSansDecouvert = new("125")
-				{
-					Client = client,
-					Banque = _banque,
-				};
+				CompteAvecDecouvert compteAvecDecouvert = new("125", 500.0d);
+				CompteSansDecouvert compteSansDecouvert = new("126");
 
 				client.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
 
 				_banque.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
-
-				client.Banque = _banque;
 			}
 		}
 
-		public List<IClient> RecupererFakeClients()
+		public List<IClient> RecupererClients()
 			=> _clients;
 
-		public List<ICompte> RecupererFakeComptes()
+		public List<ICompte> RecupererComptes()
 			=> _banque.Comptes;
 	}
 }

@@ -6,12 +6,11 @@ namespace ProjetBanque.UnitTests.Models.Comptes
 	[TestClass]
 	public class CompteSansDecouvertTests
 	{
-		private CompteSansDecouvert _compte;
+		private CompteSansDecouvert _compte = new CompteSansDecouvert("A001");
 
 		[TestInitialize]
 		public void Init()
 		{
-			_compte = new CompteSansDecouvert("A001");
 			_compte.Crediter(1000.0d);
 		}
 

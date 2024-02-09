@@ -1,13 +1,11 @@
-﻿using ProjetBanque.Models.Banques;
+﻿using ProjetBanque.Abstractions.DTO;
 
 namespace ProjetBanque.dto
 {
-    public abstract class CompteDTO : DTO
-    {
-        public double Solde { get; protected set; }
-        public string NumeroCompte { get; protected set; }
+	public abstract class CompteDTO : IDTO
+	{
+		public double Solde { get; set; }
+		public string NumeroCompte { get; set; }
 
-        public Banque Banque { get; set; }
-
-    }
+	}
 }

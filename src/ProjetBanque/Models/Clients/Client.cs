@@ -1,6 +1,6 @@
-﻿using ProjetBanque.Abstractions.Models;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.dto;
-using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Models.Clients
 {
@@ -9,8 +9,7 @@ namespace ProjetBanque.Models.Clients
 		public string NumeroClient { get; set; } = numeroClient;
 		public string Adresse { get; set; } = adresse;
 		public string Nom { get; set; } = nom;
-		public IBanque Banque { get; set; }
-		public List<Compte> Comptes { get; set; } = [];
+		public List<ICompte> Comptes { get; set; } = [];
 
 		public override ClientDTO ConvertirEnDTO()
 		{
@@ -19,7 +18,6 @@ namespace ProjetBanque.Models.Clients
 				NumeroClient = NumeroClient,
 				Adresse = Adresse,
 				Nom = Nom,
-				Banque = RecupererBanqueDTO()
 			};
 		}
 

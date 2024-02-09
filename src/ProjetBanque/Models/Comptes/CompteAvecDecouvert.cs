@@ -1,4 +1,5 @@
-﻿using ProjetBanque.dto;
+﻿using ProjetBanque.Abstractions.DTO;
+using ProjetBanque.dto;
 
 namespace ProjetBanque.Models.Comptes
 {
@@ -6,12 +7,17 @@ namespace ProjetBanque.Models.Comptes
 	{
 		public double DecouvertAutorise { get; set; } = decouvertAutorise;
 
-        public override DTO ConvertirEnDTO()
-        {
-            throw new NotImplementedException();
-        }
+		public override IDTO ConvertirEnDTO()
+		{
+			return new CompteAvecDecouvertDTO
+			{
+				Solde = Solde,
+				NumeroCompte = NumeroCompte,
+				DecouvertAutorise = DecouvertAutorise,
+			};
+		}
 
-        public override double? Debiter(double montant)
+		public override double? Debiter(double montant)
 		{
 			if (EstDebitable(montant))
 				return Solde -= montant;

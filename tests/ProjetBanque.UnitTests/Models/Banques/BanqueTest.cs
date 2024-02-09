@@ -1,119 +1,118 @@
 using FluentAssertions;
 using Moq;
+using ProjetBanque.Abstractions;
 using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Banques;
-using ProjetBanque.Models.Clients;
-using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanqueTest.UnitTests.Models.BanqueTests
 {
-    [TestClass]
-    public class BanqueTest
-    {
-        [TestMethod]
-        public void ConstructeurVide_ClientsEtComptesSontListesVides()
-        {
-            // Arrange
-            Banque banque = new Banque();
+	[TestClass]
+	public class BanqueTest
+	{
+		[TestMethod]
+		public void ConstructeurVide_ClientsEtComptesSontListesVides()
+		{
+			// Arrange
+			Banque banque = new Banque();
 
-            // Act
-            List<Client> clients = banque.Clients;
-            List<Compte> comptes = banque.Comptes;
+			// Act
+			List<IClient> clients = banque.Clients;
+			List<ICompte> comptes = banque.Comptes;
 
-            // Assert
-            clients.Should().HaveCount(0);
-            comptes.Should().HaveCount(0);
-        }
+			// Assert
+			clients.Should().HaveCount(0);
+			comptes.Should().HaveCount(0);
+		}
 
-        [TestMethod]
-        [DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
-        [DataRow("123", "M", "John", "987", 8000)]
-        public void Retrait_VerificationSiRetraitAppelDebiter_DebiterEffectue(
-            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
-        {
-            // Arrange
-            Banque banque = new();
+		[TestMethod]
+		[DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
+		[DataRow("123", "M", "John", "987", 8000)]
+		public void Retrait_VerificationSiRetraitAppelDebiter_DebiterEffectue(
+			string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
+		{
+			// Arrange
+			Banque banque = new();
 
-            Client client = new(clientNumero, clientAdresse, clientNom);
-            Mock<Compte> compteMock = new(compteNumero);
+			Mock<IClient> client = new(clientNumero, clientAdresse, clientNom);
+			Mock<ICompte> compteMock = new(compteNumero);
 
-            client.Comptes.Add(compteMock.Object);
-            banque.Clients.Add(client);
+			client.Object.Comptes.Add(compteMock.Object);
+			banque.Clients.Add(client.Object);
 
-            // Act
-            banque.Retrait(compteNumero, clientNom, montant);
+			// Act
+			banque.Retrait(compteNumero, clientNom, montant);
 
-            // Assert
-            compteMock.Verify(c => c.Debiter(montant), Times.Once);
-        }
+			// Assert
+			compteMock.Verify(c => c.Debiter(montant), Times.Once);
+		}
 
-        [TestMethod]
-        [DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
-        [DataRow("123", "M", "John", "987", 8000)]
-        public void Depot_DeposeXArgentSurUnCompte_MontantDeposerEgalMontantEtSoldePlusX(
-            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
-        {
-            // Arrange
-            Banque banque = new();
+		[TestMethod]
+		[DataRow("123456789", "Metz", "John Doe", "987654321", 500)]
+		[DataRow("123", "M", "John", "987", 8000)]
+		public void Depot_DeposeXArgentSurUnCompte_MontantDeposerEgalMontantEtSoldePlusX(
+			string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant)
+		{
+			// Arrange
+			Banque banque = new();
 
-            Client client = new(clientNumero, clientAdresse, clientNom);
-            Mock<Compte> compteMock = new(compteNumero);
+			Mock<IClient> client = new(clientNumero, clientAdresse, clientNom);
+			Mock<ICompte> compteMock = new(compteNumero);
 
-            client.Comptes.Add(compteMock.Object);
-            banque.Clients.Add(client);
+			client.Object.Comptes.Add(compteMock.Object);
+			banque.Clients.Add(client.Object);
 
-            double soldeOrigine = compteMock.Object.Solde;
+			double soldeOrigine = compteMock.Object.Solde;
 
-            // Act
-            double? montantDeposer = banque.Depot(compteNumero, clientNom, montant);
+			// Act
+			double? montantDeposer = banque.Depot(compteNumero, clientNom, montant);
 
-            // Assert
-            montantDeposer.Should().Be(montant);
-            compteMock.Object.Solde.Should().Be(soldeOrigine + montant);
-        }
+			// Assert
+			montantDeposer.Should().Be(montant);
+			compteMock.Object.Solde.Should().Be(soldeOrigine + montant);
+		}
 
-        [TestMethod]
-        [DataRow("123456789", "Metz", "John Doe", "987654321", 500, "987654322")]
-        public void Depot_DemandeDepotSurCompteInexistant_RetourneNull(
-            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string compteInexistant
-        )
-        {
-            // Arrange
-            Banque banque = new();
+		[TestMethod]
+		[DataRow("123456789", "Metz", "John Doe", "987654321", 500, "987654322")]
+		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull(
+			string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string compteInexistant
+		)
+		{
+			// Arrange
+			Banque banque = new();
 
-            Client client = new(clientNumero, clientAdresse, clientNom);
-            Mock<Compte> compteMock = new(compteNumero);
+			Mock<IClient> client = new(clientNumero, clientAdresse, clientNom);
+			Mock<ICompte> compteMock = new(compteNumero);
 
-            client.Comptes.Add(compteMock.Object);
-            banque.Clients.Add(client);
+			client.Object.Comptes.Add(compteMock.Object);
+			banque.Clients.Add(client.Object);
 
-            // Act
-            double? montantDeposer = banque.Depot("987654322", clientNom, montant);
+			// Act
+			double? montantDeposer = banque.Depot("987654322", clientNom, montant);
 
-            // Assert
-            montantDeposer.Should().BeNull();
-        }
+			// Assert
+			montantDeposer.Should().BeNull();
+		}
 
-        [TestMethod]
-        [DataRow("123456789", "Metz", "John Doe", "987654321", 500, "Bob")]
-        public void Depot_DemandeDepotSurClientInexistant_RetourneNull(
-            string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string clientInexistant
-        )
-        {
-            // Arrange
-            Banque banque = new();
+		[TestMethod]
+		[DataRow("123456789", "Metz", "John Doe", "987654321", 500, "Bob")]
+		public void Depot_DemandeDepotSurClientInexistant_RetourneNull(
+			string clientNumero, string clientAdresse, string clientNom, string compteNumero, double montant, string clientInexistant
+		)
+		{
+			// Arrange
+			Banque banque = new();
 
-            Client client = new(clientNumero, clientAdresse, clientNom);
-            Mock<Compte> compteMock = new(compteNumero);
+			Mock<IClient> client = new(clientNumero, clientAdresse, clientNom);
+			Mock<ICompte> compteMock = new(compteNumero);
 
-            client.Comptes.Add(compteMock.Object);
-            banque.Clients.Add(client);
+			client.Object.Comptes.Add(compteMock.Object);
+			banque.Clients.Add(client.Object);
 
-            // Act
-            double? montantDeposer = banque.Depot(compteNumero, clientInexistant, montant);
+			// Act
+			double? montantDeposer = banque.Depot(compteNumero, clientInexistant, montant);
 
-            // Assert
-            montantDeposer.Should().BeNull();
-        }
-    }
+			// Assert
+			montantDeposer.Should().BeNull();
+		}
+	}
 }

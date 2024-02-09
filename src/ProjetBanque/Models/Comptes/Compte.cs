@@ -6,12 +6,12 @@ namespace ProjetBanque.Models.Comptes
 	{
 		public double Solde { get; protected set; } = 0;
 		public string NumeroCompte { get; protected set; } = numeroCompte;
-		public IClient Client { get; set; }
-		public IBanque Banque { get; set; }
 
 		public abstract double? Debiter(double montant);
 
 		public double Crediter(double montant)
 			=> Solde += montant;
+
+
 	}
 }

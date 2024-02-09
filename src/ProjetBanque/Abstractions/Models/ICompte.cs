@@ -1,9 +1,7 @@
 ﻿namespace ProjetBanque.Abstractions.Models
 {
-	public interface ICompte
+	public interface ICompte : IEntity
 	{
-		IBanque Banque { get; set; }
-		IClient Client { get; set; }
 		string NumeroCompte { get; }
 		double Solde { get; }
 

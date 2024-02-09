@@ -1,6 +1,7 @@
-﻿using ProjetBanque.Abstractions.Models;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.Abstractions.DTO;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.dto;
-using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.Models.Banques
 {
@@ -32,10 +33,10 @@ namespace ProjetBanque.Models.Banques
 		private IClient? RecupererClient(string nomClient)
 			=> Clients.Find(c => c.Nom == nomClient);
 
-		private Compte? RecupererCompte(IClient client, string numeroCompte)
+		private ICompte? RecupererCompte(IClient client, string numeroCompte)
 			=> client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
 
-		public override DTO ConvertirEnDTO()
+		public override IDTO ConvertirEnDTO()
 		{
 			List<ClientDTO> clientsDTO = Clients.Select(c => (ClientDTO)c.ConvertirEnDTO()).ToList();
 
