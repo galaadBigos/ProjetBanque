@@ -28,6 +28,8 @@ namespace ProjetBanque.Models.Banques
 			return null;
 		}
 
+
+
 		private Client? RecupererClient(string nomClient)
 			=> Clients.Find(c => c.Nom == nomClient);
 

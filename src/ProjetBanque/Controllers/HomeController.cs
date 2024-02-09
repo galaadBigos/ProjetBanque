@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetBanque.Models;
+using ProjetBanque.Models.Clients;
 using System.Diagnostics;
 
 namespace ProjetBanque.Controllers
@@ -27,6 +28,12 @@ namespace ProjetBanque.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+		[HttpGet("GetAllClient")]
+		public IActionResult GetAllClient()
+		{
+			return Ok(new Client("f", "g", "gg"));
 		}
 	}
 }
