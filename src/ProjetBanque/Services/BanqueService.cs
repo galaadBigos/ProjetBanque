@@ -35,7 +35,6 @@ namespace ProjetBanque.Services
 				return comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList() ?? null;
 			
 			return null;
-
 		}
 	}
 }

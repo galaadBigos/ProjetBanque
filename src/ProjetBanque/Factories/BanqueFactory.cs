@@ -9,8 +9,6 @@ namespace ProjetBanque.Factories
 		{
 			Banque result = new();
 
-
-
 			return result;
 		}
 	}
