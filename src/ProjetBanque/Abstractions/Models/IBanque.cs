@@ -2,7 +2,7 @@
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
 
-namespace ProjetBanque.Abstractions
+namespace ProjetBanque.Abstractions.Models
 {
 	public interface IBanque
 	{
