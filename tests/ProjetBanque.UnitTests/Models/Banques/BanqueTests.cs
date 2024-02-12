@@ -77,14 +77,11 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 			string compteNumero = _compteMock.Object.NumeroCompte;
 			string clientNom = _clientMock.Object.Nom;
 
-			double soldeOrigine = _compteMock.Object.Solde;
-
 			// Act
-			double? nouvelleSolde = _banque.Depot(compteNumero, clientNom, montant);
+			_banque.Depot(compteNumero, clientNom, montant);
 
 			// Assert
-			nouvelleSolde.Should().Be(soldeOrigine + montant);
-			_compteMock.Object.Solde.Should().Be(nouvelleSolde);
+			_compteMock.Verify(c => c.Crediter(montant), Times.Once);
 		}
 
 		[TestMethod]
@@ -107,6 +104,7 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 			double? montantDeposer = _banque.Depot(compteNumeroInexistant, clientNom, montant);
 
 			// Assert
+			_compteMock.Verify(c => c.Crediter(montant), Times.Never);
 			montantDeposer.Should().BeNull();
 		}
 
@@ -130,6 +128,7 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 			double? montantDeposer = _banque.Depot(compteNumero, clientNomInexistant, montant);
 
 			// Assert
+			_compteMock.Verify(c => c.Crediter(montant), Times.Never);
 			montantDeposer.Should().BeNull();
 		}
 	}
