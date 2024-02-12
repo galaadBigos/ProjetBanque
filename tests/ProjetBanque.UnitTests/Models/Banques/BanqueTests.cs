@@ -53,8 +53,8 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 		}
 
 		[TestMethod]
-		[DataRow(500)]
-		[DataRow(8000)]
+		[DataRow(500d)]
+		[DataRow(8000d)]
 		public void Retrait_VerificationSiRetraitAppelDebiter_DebiterEffectue(double montant)
 		{
 			// Arrange
@@ -69,8 +69,8 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 		}
 
 		[TestMethod]
-		[DataRow(500)]
-		[DataRow(8000)]
+		[DataRow(500d)]
+		[DataRow(8000d)]
 		public void Depot_DeposeXArgentSurUnCompte_MontantDeposerEgalMontantEtSoldePlusX(double montant)
 		{
 			// Arrange
@@ -88,8 +88,8 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 		}
 
 		[TestMethod]
-		[DataRow(500)]
-		[DataRow(8000)]
+		[DataRow(500d)]
+		[DataRow(8000d)]
 		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull(double montant)
 		{
 			// Arrange
@@ -111,8 +111,8 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 		}
 
 		[TestMethod]
-		[DataRow(500)]
-		[DataRow(8000)]
+		[DataRow(500d)]
+		[DataRow(8000d)]
 		public void Depot_DemandeDepotSurClientInexistant_RetourneNull(double montant)
 		{
 			// Arrange
