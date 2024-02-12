@@ -71,7 +71,7 @@ namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
 		[TestMethod]
 		[DataRow(500d)]
 		[DataRow(8000d)]
-		public void Depot_DeposeXArgentSurUnCompte_MontantDeposerEgalMontantEtSoldePlusX(double montant)
+		public void Depot_DeposeXArgentSurUnCompte_RetourneSoldePlusX(double montant)
 		{
 			// Arrange
 			string compteNumero = _compteMock.Object.NumeroCompte;
