@@ -5,7 +5,7 @@ using ProjetBanque.Abstractions;
 using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Banques;
 
-namespace ProjetBanqueTests.UnitTests.Models.BanqueTestss
+namespace ProjetBanque.UnitTests.Models.Banques
 {
 	[TestClass]
 	public class BanqueTests
