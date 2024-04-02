@@ -79,3 +79,10 @@ Remplacer \[\[ÀREMPLACER]] par les datas ci-dessus :
 http://localhost:5092/VirementExterne?nomBanqueDebiteur=[[ÀREMPLACER]]&nomBanqueCrediteur=[[ÀREMPLACER]]&numeroCompteDebiteur=[[ÀREMPLACER]]&numeroCompteCrediteur=[[ÀREMPLACER]]&somme=[[ÀREMPLACER]]
 
 Exemple : http://localhost:5092/VirementExterne?nomBanqueDebiteur=LGBD1&nomBanqueCrediteur=LGBD2&numeroCompteDebiteur=1251&numeroCompteCrediteur=1262&somme=200
+
+## Tests
+Pour lancer les tests, il faut se mettre dans le terminal à la racine projet (*ProjetBanque*) et faire ces deux commandes :
+```shell
+dotnet test .\tests\ProjetBanque.UnitTests\
+dotnet test .\tests\VirementService.UnitTests\
+```
