@@ -1,4 +1,6 @@
-﻿using ProjetBanque.Abstractions.DAO;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.Abstractions.DAO;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Abstractions.Services;
 using ProjetBanque.dto;
 
@@ -13,7 +15,7 @@ namespace ProjetBanque.Services
 			this._banqueDAO = _banqueDAO;
 		}
 
-		public List<ClientDTO> RecupererCLientsDTO(string nomBanque)
+		public List<ClientDTO> RecupererClientsDTO(string nomBanque)
 		{
 			var clients = _banqueDAO.RecupererClients(nomBanque);
 

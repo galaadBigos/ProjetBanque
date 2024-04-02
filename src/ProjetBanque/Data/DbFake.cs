@@ -40,9 +40,7 @@ namespace ProjetBanque.Data
 		}
 
 		public List<IClient>? RecupererClients(string nomBanque)
-		{
-			return _banques.FirstOrDefault(b => b.Nom == nomBanque)?.Clients;
-		}
+			=> _banques.FirstOrDefault(b => b.Nom == nomBanque)?.Clients;
 
 		public List<ICompte>? RecupererComptes(string nomBanque)
 			=> _banques.FirstOrDefault(b => b.Nom == nomBanque)?.Comptes;
