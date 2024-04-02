@@ -19,7 +19,7 @@ namespace ProjetBanque.Controllers
 				var result = _banqueService.RecupererComptesDTO(nomBanque);
 				if (result is null)
 					return NotFound();
-				return Ok();
+				return Ok(result);
 			}
 			catch (Exception ex)
 			{

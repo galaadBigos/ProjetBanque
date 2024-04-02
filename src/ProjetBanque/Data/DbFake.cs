@@ -24,14 +24,13 @@ namespace ProjetBanque.Data
 					new Client("C0121" + i, "13 rue de Metz", "Ludovic Wagner"),
 					new Client("C0126" + i, "13 rue de Metz", "Donia Zmander"),
 					new Client("C0151" + i, "13 rue de Metz", "Brice Orliange"),
-					new Client("C0151" + i, "13 rue de Metz", "Galaad Bigs")
 				};
 				_banque.Clients = _clients;
 
 				foreach (IClient client in _clients)
 				{
-					CompteAvecDecouvert compteAvecDecouvert = new("125" + i, 500.0d);
-					CompteSansDecouvert compteSansDecouvert = new("126" + i);
+					CompteAvecDecouvert compteAvecDecouvert = new("125" + i, 500.0d) { Solde = i * 1_000.0d };
+					CompteSansDecouvert compteSansDecouvert = new("126" + i) { Solde = i * 1_000.0d };
 
 					client.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
 					_banque.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
