@@ -31,7 +31,6 @@ namespace ProjetBanque.Data
 				CompteSansDecouvert compteSansDecouvert = new("126");
 
 				client.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
-
 				_banque.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
 			}
 		}

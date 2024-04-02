@@ -6,7 +6,7 @@ using ProjetBanque.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 builder.Services.AddScoped<IBanqueDAO, BanqueDAO>();
 builder.Services.AddScoped<IBanqueService, BanqueService>();
