@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IBanqueDAO, BanqueDAO>();
 builder.Services.AddScoped<IBanqueService, BanqueService>();
-builder.Services.AddScoped<IDataBase, DbFake>();
+builder.Services.AddSingleton<IDataBase, DbFake>();
 
 var app = builder.Build();
 

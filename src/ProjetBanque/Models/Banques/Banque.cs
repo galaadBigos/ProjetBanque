@@ -9,6 +9,7 @@ namespace ProjetBanque.Models.Banques
 	{
 		public List<IClient> Clients { get; set; } = [];
 		public List<ICompte> Comptes { get; set; } = [];
+		public string Nom { get; set; } = string.Empty;
 
 		public double? Retrait(string numeroCompte, string nomClient, double montant)
 		{

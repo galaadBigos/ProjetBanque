@@ -4,8 +4,8 @@ namespace ProjetBanque.Abstractions.Services
 {
 	public interface IBanqueService
 	{
-		List<ClientDTO> RecupererCLientsDTO();
-		List<CompteDTO> RecupererComptesDTO();
-		List<CompteDTO>? RecupererComptesDTOParClient(string numeroClient);
+		List<ClientDTO> RecupererCLientsDTO(string nomBanque);
+		List<CompteDTO>? RecupererComptesDTO(string nomBanque);
+		List<CompteDTO>? RecupererComptesDTOParClient(string nomBanque, string numeroClient);
 	}
 }
