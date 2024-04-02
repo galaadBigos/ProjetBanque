@@ -7,7 +7,7 @@ namespace ProjetBanque.Factories
 	{
 		public static IBanque RecupererInstance()
 		{
-			Banque result = new();
+			Banque result = new() { Nom = "LGBD" };
 
 			return result;
 		}

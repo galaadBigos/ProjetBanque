@@ -2,9 +2,10 @@
 
 namespace ProjetBanque.Abstractions.DAO
 {
-    public interface IDataBase
-    {
-        List<IClient> RecupererClients();
-        List<ICompte> RecupererComptes();
-    }
+	public interface IDataBase
+	{
+		List<IClient>? RecupererClients(string nomBanque);
+		List<ICompte>? RecupererComptes(string nomBanque);
+
+	}
 }

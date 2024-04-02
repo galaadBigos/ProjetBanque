@@ -4,6 +4,7 @@ namespace ProjetBanque.Abstractions.Models
 {
 	public interface IBanque
 	{
+		public string Nom { get; set; }
 		List<IClient> Clients { get; set; }
 		List<ICompte> Comptes { get; set; }
 

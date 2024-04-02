@@ -9,36 +9,42 @@ namespace ProjetBanque.Data
 {
 	public class DbFake : IDataBase
 	{
-		private IBanque _banque;
+		private List<IBanque> _banques = new();
 		private List<IClient> _clients;
-		private List<ICompte> _comptes;
 
 		public DbFake()
 		{
-			_banque = new Banque();
-
-			_clients = new()
+			for (int i = 0 ; i < 3 ; i++)
 			{
-				new Client("C0121", "13 rue de Metz", "Ludovic Wagner"),
-				new Client("C0126", "13 rue de Metz", "Donia Zmander"),
-				new Client("C0151", "13 rue de Metz", "Brice Orliange"),
-				new Client("C0151", "13 rue de Metz", "Galaad Bigs")
-			};
+				var _banque = new Banque() { Nom = "LGBD" + i };
+				_banques.Add(_banque);
 
-			foreach (IClient client in _clients)
-			{
-				CompteAvecDecouvert compteAvecDecouvert = new("125", 500.0d);
-				CompteSansDecouvert compteSansDecouvert = new("126");
+				_clients = new()
+				{
+					new Client("C0121" + i, "13 rue de Metz", "Ludovic Wagner"),
+					new Client("C0126" + i, "13 rue de Metz", "Donia Zmander"),
+					new Client("C0151" + i, "13 rue de Metz", "Brice Orliange"),
+					new Client("C0151" + i, "13 rue de Metz", "Galaad Bigs")
+				};
+				_banque.Clients = _clients;
 
-				client.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
-				_banque.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
+				foreach (IClient client in _clients)
+				{
+					CompteAvecDecouvert compteAvecDecouvert = new("125" + i, 500.0d);
+					CompteSansDecouvert compteSansDecouvert = new("126" + i);
+
+					client.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
+					_banque.Comptes.AddRange([compteAvecDecouvert, compteSansDecouvert]);
+				}
 			}
 		}
 
-		public List<IClient> RecupererClients()
-			=> _clients;
+		public List<IClient>? RecupererClients(string nomBanque)
+		{
+			return _banques.FirstOrDefault(b => b.Nom == nomBanque)?.Clients;
+		}
 
-		public List<ICompte> RecupererComptes()
-			=> _banque.Comptes;
+		public List<ICompte>? RecupererComptes(string nomBanque)
+			=> _banques.FirstOrDefault(b => b.Nom == nomBanque)?.Comptes;
 	}
 }
