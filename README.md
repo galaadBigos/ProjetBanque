@@ -5,6 +5,13 @@
 dotnet build
 ```
 
+## Run
+Pour lancer les application, il faut se mettre dans le terminal à la racine du projet (*ProjetBanque*) et faire ces deux commandes :
+```shell
+dotnet run --project .\src\ProjetBanque\
+dotnet run --project .\src\VirementService\
+```
+
 ## Faire les appels à l'API 
 ### Datas
 Voici les données présentes dans la DbFfake.
