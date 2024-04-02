@@ -34,11 +34,6 @@ public class BanqueServiceTest
     [DataRow("LGBD2")]
     public void RecupererClientsDTO_VerificationSiRecupererClientsAppel(string nomBanque)
     {
-        // Arrange
-        _fixture.Customizations.Add(new TypeRelay(typeof(IClient), typeof(Client)));
-        _banqueDaoMock.Setup(b => b.RecupererClients(nomBanque))
-            .Returns(_fixture.CreateMany<IClient>().ToList());
-
         // Act
         _banqueService.RecupererClientsDTO(nomBanque);
 
@@ -52,11 +47,6 @@ public class BanqueServiceTest
     [DataRow("LGBD2")]
     public void RecupererComptesDTO_VerificationSiRecupererComptesAppel(string nomBanque)
     {
-        // Arrange
-        _fixture.Customizations.Add(new TypeRelay(typeof(ICompte), typeof(Compte)));
-        _banqueDaoMock.Setup(b => b.RecupererComptes(nomBanque))
-            .Returns(_fixture.CreateMany<ICompte>().ToList());
-
         // Act
         _banqueService.RecupererComptesDTO(nomBanque);
 
