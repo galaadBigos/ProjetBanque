@@ -14,14 +14,12 @@ namespace ProjetBanque.Data
 		}
 
 		public List<IClient> RecupererClients(string nomBanque)
-			=> _dataBase.RecupererClients(nomBanque);
+			=> _dataBase.RecupererClients(nomBanque) ?? new List<IClient>();
 
 		public List<ICompte> RecupererComptes(string nomBanque)
-			=> _dataBase.RecupererComptes(nomBanque);
+			=> _dataBase.RecupererComptes(nomBanque) ?? new List<ICompte>();
 
 		public List<ICompte>? RecupererComptesParClient(string nomBanque, string numeroClient)
-		{
-			return _dataBase.RecupererClients(nomBanque).Find(c => c.NumeroClient == numeroClient)?.Comptes;
-		}
+			=> _dataBase.RecupererClients(nomBanque)?.Find(c => c.NumeroClient == numeroClient)?.Comptes;
 	}
 }

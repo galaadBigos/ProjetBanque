@@ -1,4 +1,6 @@
-﻿using ProjetBanque.Abstractions.DAO;
+﻿using ProjetBanque.Abstractions;
+using ProjetBanque.Abstractions.DAO;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Abstractions.Services;
 using ProjetBanque.dto;
 
@@ -13,16 +15,16 @@ namespace ProjetBanque.Services
 			this._banqueDAO = _banqueDAO;
 		}
 
-		public List<ClientDTO> RecupererCLientsDTO(string nomBanque)
+		public List<ClientDTO> RecupererClientsDTO(string nomBanque)
 		{
-			var clients = _banqueDAO.RecupererClients(nomBanque);
+			var clients = _banqueDAO.RecupererClients(nomBanque) ?? new List<IClient>();
 
 			return clients.Select(c => (ClientDTO)c.ConvertirEnDTO()).ToList();
 		}
 
 		public List<CompteDTO> RecupererComptesDTO(string nomBanque)
 		{
-			var comptes = _banqueDAO.RecupererComptes(nomBanque);
+			var comptes = _banqueDAO.RecupererComptes(nomBanque) ?? new List<ICompte>();
 
 			return comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList();
 		}
