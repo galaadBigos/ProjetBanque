@@ -5,20 +5,19 @@ namespace ProjetBanque.Controllers
 {
 	public class VirementController : ControllerBase
 	{
-		private readonly IConfiguration _configuration;
-		private string _baseUrl = "";
+		private string _baseUrl = "http://localhost:5092";
 
-		public VirementController(IConfiguration configuration)
+		public VirementController()
 		{
-			_configuration = configuration;
-			_baseUrl = _configuration.GetValue<string>("ApiVirementUrl");
 		}
 
 		[HttpPost("/FaireVirementInterne")]
 		public async Task<IActionResult> VirementInterneAsync([FromBody] RequestVirement request)
 		{
-			//string url = _baseUrl + $"VirementInterne?nomBanqueDebiteur={nomBanqueDebiteur}&nomBanqueCrediteur={nomBanqueCrediteur}&numeroCompteDebiteur={numeroCompteDebiteur}&numeroCompteCrediteur={numeroCompteCrediteur}&somme={somme}";
-			return await AppelServiceExterne("f");
+			//string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+			string url = _baseUrl + $"/VirementInterne?nomBanqueDebiteur={request.NomBanqueDebiteur}&nomBanqueCrediteur={request.NomBanqueCrediteur}&numeroCompteDebiteur={request.NumeroCompteDebiteur}&numeroCompteCrediteur={request.NumeroCompteCrediteur}&somme={request.Somme}";
+			return await AppelServiceExterne(url);
 		}
 
 		[HttpPost("/FaireVirementExterne")]
