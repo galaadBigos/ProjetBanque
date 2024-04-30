@@ -16,7 +16,6 @@ namespace ProjetBanque.UnitTests.Services;
 [TestClass]
 public class BanqueServiceTest
 {
-    private Fixture _fixture = new();
     private Mock<IBanqueDAO> _banqueDaoMock;
     private BanqueService _banqueService;
 

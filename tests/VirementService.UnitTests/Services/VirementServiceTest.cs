@@ -7,7 +7,7 @@ using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Data;
 using VirementService.Controllers;
 
-namespace VirementService.Tests
+namespace VirementService.UnitTests.Services
 {
     [TestClass]
     [TestFixture]
