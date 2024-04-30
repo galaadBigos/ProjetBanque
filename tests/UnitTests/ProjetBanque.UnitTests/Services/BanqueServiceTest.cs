@@ -31,39 +31,52 @@ public class BanqueServiceTest
     [DataRow("LGBD0")]
     [DataRow("LGBD1")]
     [DataRow("LGBD2")]
-    public void RecupererClientsDTO_VerificationSiRecupererClientsAppel(string nomBanque)
+    public void RecupererClientsDTO_VerificationSiRecupererListClientsDtoSelonNomBanque(string nomBanque)
     {
-        // Act
-        _banqueService.RecupererClientsDTO(nomBanque);
+        _banqueDaoMock.Setup(b => b.RecupererClients(nomBanque)).Returns([
+            new Client("C0121x", "adresse x", "nom x"),
+            new Client("C0121y", "adresse y", "nom y"),
+            new Client("C0121z", "adresse z", "nom z"),
+        ]);
 
-        // Assert
+        List<ClientDTO> resultat = _banqueService.RecupererClientsDTO(nomBanque);
+
         _banqueDaoMock.Verify(b => b.RecupererClients(nomBanque), Times.Once);
+        resultat.Should().HaveCount(3);
     }
 
     [TestMethod]
     [DataRow("LGBD0")]
     [DataRow("LGBD1")]
     [DataRow("LGBD2")]
-    public void RecupererComptesDTO_VerificationSiRecupererComptesAppel(string nomBanque)
+    public void RecupererComptesDTO_VerificationSiRecupererListComptesDtoSelonNomBanque(string nomBanque)
     {
-        // Act
-        _banqueService.RecupererComptesDTO(nomBanque);
+        _banqueDaoMock.Setup(b => b.RecupererComptes(nomBanque)).Returns([
+            new CompteAvecDecouvert("125x", 50),
+            new CompteSansDecouvert("125y")
+        ]);
 
-        // Assert
+        List<CompteDTO> resultat = _banqueService.RecupererComptesDTO(nomBanque);
+
         _banqueDaoMock.Verify(b => b.RecupererComptes(nomBanque), Times.Once);
+        resultat.Should().HaveCount(2);
     }
 
     [TestMethod]
     [DataRow("LGBD0", "C01210")]
     [DataRow("LGBD1", "C01211")]
     [DataRow("LGBD2", "C01512")]
-    public void RecupererComptesDTOParClient_VerificationSiRecupererComptesParClientAppel(
+    public void RecupererComptesDTOParClient_VerificationSiRecupererListComptesDtoSelonNomBanqueEtNumeroClient(
         string nomBanque, string numeroClient)
     {
-        // Act
-        _banqueService.RecupererComptesDTOParClient(nomBanque, numeroClient);
+        _banqueDaoMock.Setup(b => b.RecupererComptesParClient(nomBanque, numeroClient)).Returns([
+            new CompteAvecDecouvert("125x", 50),
+            new CompteSansDecouvert("125y")
+        ]);
 
-        // Assert
+        List<CompteDTO>? resultat = _banqueService.RecupererComptesDTOParClient(nomBanque, numeroClient);
+
         _banqueDaoMock.Verify(b => b.RecupererComptesParClient(nomBanque, numeroClient), Times.Once);
+        resultat.Should().HaveCount(2);
     }
 }
