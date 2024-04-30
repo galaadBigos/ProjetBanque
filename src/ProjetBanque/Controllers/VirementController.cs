@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetBanque.Models.Virements;
 
 namespace ProjetBanque.Controllers
 {
@@ -13,14 +14,14 @@ namespace ProjetBanque.Controllers
 			_baseUrl = _configuration.GetValue<string>("ApiVirementUrl");
 		}
 
-		[HttpGet("/FaireVirementInterne")]
-		public async Task<IActionResult> VirementInterneAsync(string nomBanqueDebiteur, string nomBanqueCrediteur, string numeroCompteDebiteur, string numeroCompteCrediteur, double somme)
+		[HttpPost("/FaireVirementInterne")]
+		public async Task<IActionResult> VirementInterneAsync([FromBody] RequestVirement request)
 		{
-			string url = _baseUrl + $"VirementInterne?nomBanqueDebiteur={nomBanqueDebiteur}&nomBanqueCrediteur={nomBanqueCrediteur}&numeroCompteDebiteur={numeroCompteDebiteur}&numeroCompteCrediteur={numeroCompteCrediteur}&somme={somme}";
-			return await AppelServiceExterne(url);
+			//string url = _baseUrl + $"VirementInterne?nomBanqueDebiteur={nomBanqueDebiteur}&nomBanqueCrediteur={nomBanqueCrediteur}&numeroCompteDebiteur={numeroCompteDebiteur}&numeroCompteCrediteur={numeroCompteCrediteur}&somme={somme}";
+			return await AppelServiceExterne("f");
 		}
 
-		[HttpGet("/FaireVirementExterne")]
+		[HttpPost("/FaireVirementExterne")]
 		public async Task<IActionResult> VirementExterneAsync(string nomBanqueDebiteur, string nomBanqueCrediteur, string numeroCompteDebiteur, string numeroCompteCrediteur, double somme)
 		{
 			string url = _baseUrl + $"VirementExterne?nomBanqueDebiteur={nomBanqueDebiteur}&nomBanqueCrediteur={nomBanqueCrediteur}&numeroCompteDebiteur={numeroCompteDebiteur}&numeroCompteCrediteur={numeroCompteCrediteur}&somme={somme}";
