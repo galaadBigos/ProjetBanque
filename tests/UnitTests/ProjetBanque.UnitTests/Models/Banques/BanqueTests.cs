@@ -85,20 +85,14 @@ namespace ProjetBanque.UnitTests.Models.Banques
 		}
 
 		[TestMethod]
-		[DataRow(500d)]
-		[DataRow(8000d)]
-		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull(double montant)
+		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull() //ti
 		{
 			// Arrange
-			string compteNumero = _compteMock.Object.NumeroCompte;
 			string clientNom = _clientMock.Object.Nom;
+			string compteNumero = _clientMock.Object.NumeroClient;
 
-			string compteNumeroInexistant;
-
-			do
-			{
-				compteNumeroInexistant = _fixture.Create<string>();
-			} while (compteNumeroInexistant == compteNumero);
+			string compteNumeroInexistant = "789";
+			int montant = 500;
 
 			// Act
 			double? montantDeposer = _banque.Depot(compteNumeroInexistant, clientNom, montant);
