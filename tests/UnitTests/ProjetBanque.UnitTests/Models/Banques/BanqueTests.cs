@@ -73,19 +73,21 @@ namespace ProjetBanque.UnitTests.Models.Banques
 		[DataRow(8000d)]
 		public void Depot_DeposeXArgentSurUnCompte_RetourneSoldePlusX(double montant)
 		{
-			// Arrange
-			string compteNumero = _compteMock.Object.NumeroCompte;
-			string clientNom = _clientMock.Object.Nom;
+            // Arrange
+            string clientNom = _clientMock.Object.Nom;
+            string compteNumero = _clientMock.Object.NumeroClient;
 
-			// Act
-			_banque.Depot(compteNumero, clientNom, montant);
+
+            // Act
+            _banque.Depot(compteNumero, clientNom, montant);
 
 			// Assert
 			_compteMock.Verify(c => c.Crediter(montant), Times.Once);
+
 		}
 
 		[TestMethod]
-		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull() //ti
+		public void Depot_DemandeDepotSurCompteInexistant_RetourneNull()
 		{
 			// Arrange
 			string clientNom = _clientMock.Object.Nom;
