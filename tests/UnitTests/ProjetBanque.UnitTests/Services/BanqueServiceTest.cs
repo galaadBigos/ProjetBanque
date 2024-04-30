@@ -1,11 +1,6 @@
-﻿using AutoFixture;
-using AutoFixture.Kernel;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
-using ProjetBanque.Abstractions;
 using ProjetBanque.Abstractions.DAO;
-using ProjetBanque.Abstractions.Models;
-using ProjetBanque.Data;
 using ProjetBanque.dto;
 using ProjetBanque.Models.Clients;
 using ProjetBanque.Models.Comptes;
