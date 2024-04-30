@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetBanque.UnitTests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirementService.IntegrationTests", "tests\IntegrationsTests\VirementService.IntegrationTests\VirementService.IntegrationTests.csproj", "{4D6D7F58-FE8D-4E58-86A7-F59C5F702C4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetBanque.IntegrationTests", "tests\IntegrationsTests\ProjetBanque.IntegrationTests\ProjetBanque.IntegrationTests.csproj", "{D95CE011-D9A3-4BF8-8880-2D41A2558C2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{4D6D7F58-FE8D-4E58-86A7-F59C5F702C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D6D7F58-FE8D-4E58-86A7-F59C5F702C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D6D7F58-FE8D-4E58-86A7-F59C5F702C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D95CE011-D9A3-4BF8-8880-2D41A2558C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D95CE011-D9A3-4BF8-8880-2D41A2558C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D95CE011-D9A3-4BF8-8880-2D41A2558C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D95CE011-D9A3-4BF8-8880-2D41A2558C2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{C62AA84C-F649-47E3-9F1A-2E22AF05DBFB} = {08373B59-B17D-4522-88DF-118767C22BAD}
 		{CDBDC069-7F87-4C88-99E5-8B9844C6CEFA} = {C62AA84C-F649-47E3-9F1A-2E22AF05DBFB}
 		{4D6D7F58-FE8D-4E58-86A7-F59C5F702C4A} = {8F068DCD-FCEF-4858-8163-11FF0705D928}
+		{D95CE011-D9A3-4BF8-8880-2D41A2558C2B} = {8F068DCD-FCEF-4858-8163-11FF0705D928}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26FCBE12-8C54-458D-B225-E0B3CFC2F633}
