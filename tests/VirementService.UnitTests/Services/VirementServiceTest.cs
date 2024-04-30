@@ -10,7 +10,6 @@ using VirementService.Controllers;
 namespace VirementService.UnitTests.Services
 {
     [TestClass]
-    [TestFixture]
     public class VirementControllerTests
     {
         [TestMethod]
