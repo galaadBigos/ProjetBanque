@@ -1,3 +1,6 @@
+# Instruction pour lancer les projets
+<a name="instruction-pour-lancer-les-projets"></a>
+
 ## Build
 - Il faut installer le framework .NET 8
 - Pour build les projets, il faut se mettre dans le terminal à la racine du projet (*ProjetBanque*) et faire cette commande :
@@ -12,9 +15,19 @@ dotnet run --project .\src\ProjetBanque\
 dotnet run --project .\src\VirementService\
 ```
 
-## Faire les appels à l'API 
-### Datas
-Voici les données présentes dans la DbFfake.
+------------------------------------------------------------------------------------------------------------------
+
+# Instruction pour lancer les tests
+
+Pour lancer les tests, il faut se mettre dans le terminal à la racine projet (*ProjetBanque*) et faire ces deux commandes :
+```shell
+dotnet test .\tests\ProjetBanque.UnitTests\
+dotnet test .\tests\VirementService.UnitTests\
+```
+
+------------------------------------------------------------------------------------------------------------------
+
+# Jeu de données dans le DbFake
 
 **Banques** :
 - LGBD0
@@ -59,39 +72,43 @@ Voici les données présentes dans la DbFfake.
 			-  **Numéros de comptes** :
 				- 1252
 				- 1262
-### Banque
-**Pour récupérer les comptes d'un client :**
 
-Remplacer \[\[ÀREMPLACER]] par les datas ci-dessus :
-http://localhost:5219/Banque/RecupererComptesParClient?nomBanque=[[ÀREMPLACER]]&numeroclient=[[ÀREMPLACER]]
+------------------------------------------------------------------------------------------------------------------
 
-Exemple : http://localhost:5219/Banque/RecupererComptesParClient?nomBanque=LGBD2&numeroclient=C01212
+# Utilisation de l'API
 
-**Pour récupérer les comptes d'une banque :**
+## Banque
 
-Remplacer \[\[ÀREMPLACER]] par les datas ci-dessus :
-http://localhost:5219/Banque/RecupererComptes?nomBanque=[[ÀREMPLACER]]
+### Pour récupérer les comptes d'un client :
 
-Exemple : http://localhost:5219/Banque/RecupererComptes?nomBanque=LGBD2
+Remplacer _"[[À_REMPLACER]]"_ par les datas ci-dessus : 
+- http://localhost:5219/Banque/RecupererComptesParClient?nomBanque=[[À_REMPLACER]]&numeroclient=[[À_REMPLACER]]
 
-### Virement
-**Pour faire un virement interne :**
+Exemple : 
+- http://localhost:5219/Banque/RecupererComptesParClient?nomBanque=LGBD2&numeroclient=C01212
 
-Remplacer \[\[ÀREMPLACER]] par les datas ci-dessus :
-http://localhost:5092/VirementInterne?nomBanqueDebiteur=[[ÀREMPLACER]]&nomBanqueCrediteur=[[ÀREMPLACER]]&numeroCompteDebiteur=[[ÀREMPLACER]]&numeroCompteCrediteur=[[ÀREMPLACER]]&somme=[[ÀREMPLACER]]
+### Pour récupérer les comptes d'une banque :
 
-Exemple : http://localhost:5092/VirementInterne?nomBanqueDebiteur=LGBD2&nomBanqueCrediteur=LGBD2&numeroCompteDebiteur=1252&numeroCompteCrediteur=1262&somme=200
+Remplacer _"[[À_REMPLACER]]"_ par les datas ci-dessus :
+- http://localhost:5219/Banque/RecupererComptes?nomBanque=[[À_REMPLACER]]
 
-**Pour faire un virement externe :**
+Exemple : 
+- http://localhost:5219/Banque/RecupererComptes?nomBanque=LGBD2
 
-Remplacer \[\[ÀREMPLACER]] par les datas ci-dessus :
-http://localhost:5092/VirementExterne?nomBanqueDebiteur=[[ÀREMPLACER]]&nomBanqueCrediteur=[[ÀREMPLACER]]&numeroCompteDebiteur=[[ÀREMPLACER]]&numeroCompteCrediteur=[[ÀREMPLACER]]&somme=[[ÀREMPLACER]]
+## Virement
 
-Exemple : http://localhost:5092/VirementExterne?nomBanqueDebiteur=LGBD1&nomBanqueCrediteur=LGBD2&numeroCompteDebiteur=1251&numeroCompteCrediteur=1262&somme=200
+### Pour faire un virement interne :
 
-## Tests
-Pour lancer les tests, il faut se mettre dans le terminal à la racine projet (*ProjetBanque*) et faire ces deux commandes :
-```shell
-dotnet test .\tests\ProjetBanque.UnitTests\
-dotnet test .\tests\VirementService.UnitTests\
-```
+Remplacer _"[[À_REMPLACER]]"_ par les datas ci-dessus :
+- http://localhost:5092/VirementInterne?nomBanqueDebiteur=[[À_REMPLACER]]&nomBanqueCrediteur=[[À_REMPLACER]]&numeroCompteDebiteur=[[À_REMPLACER]]&numeroCompteCrediteur=[[À_REMPLACER]]&somme=[[À_REMPLACER]]
+
+Exemple : 
+- http://localhost:5092/VirementInterne?nomBanqueDebiteur=LGBD2&nomBanqueCrediteur=LGBD2&numeroCompteDebiteur=1252&numeroCompteCrediteur=1262&somme=200
+
+### Pour faire un virement externe :
+
+Remplacer _"[[À_REMPLACER]]"_ par les datas ci-dessus :
+- http://localhost:5092/VirementExterne?nomBanqueDebiteur=[[À_REMPLACER]]&nomBanqueCrediteur=[[À_REMPLACER]]&numeroCompteDebiteur=[[À_REMPLACER]]&numeroCompteCrediteur=[[À_REMPLACER]]&somme=[[À_REMPLACER]]
+
+Exemple : 
+- http://localhost:5092/VirementExterne?nomBanqueDebiteur=LGBD1&nomBanqueCrediteur=LGBD2&numeroCompteDebiteur=1251&numeroCompteCrediteur=1262&somme=200
