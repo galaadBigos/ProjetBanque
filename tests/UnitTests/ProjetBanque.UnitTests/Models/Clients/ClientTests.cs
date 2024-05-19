@@ -1,6 +1,6 @@
-﻿using ProjetBanque.Abstractions.Models;
+﻿using Moq;
+using ProjetBanque.Abstractions.Models;
 using ProjetBanque.Models.Clients;
-using ProjetBanque.Models.Comptes;
 
 namespace ProjetBanque.UnitTests.Models.Clients
 {
@@ -8,13 +8,9 @@ namespace ProjetBanque.UnitTests.Models.Clients
     public class ClientTests
     {
         [TestMethod]
-        public void Constructor_SetsPropertiesCorrectly()
+        [DataRow("12345", "123 Rue de la Poste", "John Doe")]
+        public void Constructor_SetsPropertiesCorrectly(string numeroClient, string adresse, string nom)
         {
-            // Arrange
-            string numeroClient = "12345";
-            string adresse = "123 Rue de la Poste";
-            string nom = "John Doe";
-
             // Act
             var client = new Client(numeroClient, adresse, nom);
 
@@ -25,13 +21,16 @@ namespace ProjetBanque.UnitTests.Models.Clients
         }
 
         [TestMethod]
-        public void ComptesProperty_CanBeSetAndGet()
+        [DataRow("12345", "123 Rue de la Poste", "John Doe")]
+        public void ComptesProperty_ComptesCanBeSetAndGet(string numeroClient, string adresse, string nom)
         {
             // Arrange
-            var client = new Client("12345", "123 Rue de la Poste", "John Doe");
-            var compte1 = new CompteSansDecouvert("test1");
-            var compte2 = new CompteSansDecouvert("test2");
-            var comptes = new List<ICompte> { compte1, compte2 };
+            var client = new Client(numeroClient, adresse, nom);
+
+            var comptes = new List<ICompte>();
+
+            for (int i = 0; i < 2; i++)
+                comptes.Add(new Mock<ICompte>().Object);
 
             // Act
             client.Comptes = comptes;
