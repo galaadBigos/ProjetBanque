@@ -9,6 +9,11 @@ public class CompteTests
 {
     private readonly Mock<Compte> _compteMock = new("A001");
 
+    public void Constructeur_SoldeInitial0_RetourneSolde0()
+    {
+        _compteMock.Object.Solde.Should().Be(0);
+    }
+
     [TestMethod]
     [DataRow(50.0d)]
     [DataRow(250.0d)]
@@ -16,10 +21,8 @@ public class CompteTests
     {
         double soldeOrigine = _compteMock.Object.Solde;
 
-        // Act
         double nouvelleSolde = _compteMock.Object.Crediter(montant);
 
-        // Assert
         nouvelleSolde.Should().Be(soldeOrigine + montant);
         _compteMock.Object.Solde.Should().Be(nouvelleSolde);
     }
@@ -31,11 +34,9 @@ public class CompteTests
     {
         double soldeOrigine = _compteMock.Object.Solde;
 
-        // Act
         _compteMock.Object.Crediter(montant1);
         double nouvelleSolde = _compteMock.Object.Crediter(montant2);
 
-        // Assert
         nouvelleSolde.Should().Be(soldeOrigine + montant1 + montant2);
         _compteMock.Object.Solde.Should().Be(nouvelleSolde);
     }

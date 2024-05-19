@@ -1,17 +1,14 @@
 ﻿using ProjetBanque.Abstractions.Models;
 
-namespace ProjetBanque.Models.Comptes
+namespace ProjetBanque.Models.Comptes;
+
+public abstract class Compte(string numeroCompte) : IEntite, ICompte
 {
-	public abstract class Compte(string numeroCompte) : IEntite, ICompte
-	{
-		public double Solde { get; set; } = 0;
-		public string NumeroCompte { get; protected set; } = numeroCompte;
+    public double Solde { get; set; } = 0;
+    public string NumeroCompte { get; protected set; } = numeroCompte;
 
-		public abstract double? Debiter(double montant);
+    public abstract double? Debiter(double montant);
 
-		public double Crediter(double montant)
-			=> Solde += montant;
-
-
-	}
+    public double Crediter(double montant)
+        => Solde += montant;
 }

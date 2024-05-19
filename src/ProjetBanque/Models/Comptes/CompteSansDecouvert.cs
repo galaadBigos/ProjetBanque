@@ -1,20 +1,23 @@
-﻿using ProjetBanque.Abstractions.DTO;
-using ProjetBanque.dto;
+﻿using ProjetBanque.dto;
 
-namespace ProjetBanque.Models.Comptes
+namespace ProjetBanque.Models.Comptes;
+
+public class CompteSansDecouvert(string numeroCompte) : Compte(numeroCompte)
 {
-	public class CompteSansDecouvert(string numeroCompte) : Compte(numeroCompte)
-	{
-		public override IDTO ConvertirEnDTO()
-		{
-			return new CompteSansDecouvertDTO
-			{
-				Solde = Solde,
-				NumeroCompte = NumeroCompte,
-			};
-		}
+    public override CompteSansDecouvertDTO ConvertirEnDTO()
+    {
+        return new CompteSansDecouvertDTO
+        {
+            Solde = Solde,
+            NumeroCompte = NumeroCompte,
+        };
+    }
 
-		public override double? Debiter(double montant)
-			=> Solde -= montant;
-	}
+    public override double? Debiter(double montant)
+    {
+        if (Solde - montant < 0)
+            return null;
+
+        return Solde -= montant;
+    }
 }

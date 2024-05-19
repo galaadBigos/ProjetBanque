@@ -6,6 +6,5 @@ namespace ProjetBanque.dto
 	{
 		public double Solde { get; set; }
 		public string NumeroCompte { get; set; }
-
 	}
 }
