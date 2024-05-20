@@ -1,6 +1,6 @@
 ﻿namespace ProjetBanque.Abstractions.DTO
 {
-	public interface IDTO
-	{
-	}
+    public interface IDTO
+    {
+    }
 }

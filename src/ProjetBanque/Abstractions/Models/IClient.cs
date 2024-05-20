@@ -1,15 +1,10 @@
-﻿using ProjetBanque.Abstractions.DTO;
-using ProjetBanque.Abstractions.Models;
-
-namespace ProjetBanque.Abstractions
+﻿namespace ProjetBanque.Abstractions.Models
 {
-	public interface IClient
-	{
-		string Adresse { get; set; }
-		List<ICompte> Comptes { get; set; }
-		string Nom { get; set; }
-		string NumeroClient { get; set; }
-
-		IDTO ConvertirEnDTO();
-	}
+    public interface IClient : IEntity
+    {
+        string NumeroClient { get; set; }
+        string Adresse { get; set; }
+        string Nom { get; set; }
+        List<ICompte> Comptes { get; set; }
+    }
 }

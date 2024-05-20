@@ -1,7 +1,7 @@
 ﻿namespace ProjetBanque.dto
 {
-	public class CompteAvecDecouvertDTO : CompteDTO
-	{
-		public double DecouvertAutorise { get; set; }
-	}
+    public class CompteAvecDecouvertDTO : CompteDTO
+    {
+        public double DecouvertAutorise { get; set; }
+    }
 }

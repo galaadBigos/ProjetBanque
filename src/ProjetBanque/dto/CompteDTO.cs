@@ -2,9 +2,9 @@
 
 namespace ProjetBanque.dto
 {
-	public abstract class CompteDTO : IDTO
-	{
-		public double Solde { get; set; }
-		public string NumeroCompte { get; set; }
-	}
+    public abstract class CompteDTO : IDTO
+    {
+        public string NumeroCompte { get; set; }
+        public double Solde { get; set; }
+    }
 }

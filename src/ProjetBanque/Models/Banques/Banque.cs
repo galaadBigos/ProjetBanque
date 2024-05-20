@@ -1,57 +1,58 @@
-﻿using ProjetBanque.Abstractions;
-using ProjetBanque.Abstractions.DTO;
-using ProjetBanque.Abstractions.Models;
+﻿using ProjetBanque.Abstractions.Models;
 using ProjetBanque.dto;
 
 namespace ProjetBanque.Models.Banques
 {
-	public class Banque : IEntite, IBanque
-	{
-		public List<IClient> Clients { get; set; } = [];
-		public List<ICompte> Comptes { get; set; } = [];
-		public string Nom { get; set; } = string.Empty;
+    public class Banque : IEntite, IBanque
+    {
+        public string Nom { get; set; } = string.Empty;
+        public List<IClient> Clients { get; set; } = [];
+        public List<ICompte> Comptes { get; set; } = [];
 
-		public double? Retrait(string numeroCompte, string nomClient, double montant)
-		{
-			IClient? client = RecupererClient(nomClient);
+        public double? Depot(string numeroCompte, string nomClient, double montant)
+        {
+            IClient? client = RecupererClient(nomClient);
 
-			if (client is not null)
-				return RecupererCompte(client, numeroCompte)?.Debiter(montant);
+            if (client is not null)
+                return RecupererCompte(client, numeroCompte)?.Crediter(montant);
 
-			return null;
-		}
+            return null;
+        }
 
-		public double? Depot(string numeroCompte, string nomClient, double montant)
-		{
-			IClient? client = RecupererClient(nomClient);
+        public double? Retrait(string numeroCompte, string nomClient, double montant)
+        {
+            IClient? client = RecupererClient(nomClient);
 
-			if (client is not null)
-				return RecupererCompte(client, numeroCompte)?.Crediter(montant);
+            if (client is not null)
+                return RecupererCompte(client, numeroCompte)?.Debiter(montant);
 
-			return null;
-		}
+            return null;
+        }
 
-		private IClient? RecupererClient(string nomClient)
-			=> Clients.Find(c => c.Nom == nomClient);
+        private IClient? RecupererClient(string nomClient)
+            => Clients.Find(c => c.Nom == nomClient);
 
-		private ICompte? RecupererCompte(IClient client, string numeroCompte)
-			=> client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
+        private ICompte? RecupererCompte(IClient client, string numeroCompte)
+            => client.Comptes.Find(c => c.NumeroCompte == numeroCompte);
 
-		public override IDTO ConvertirEnDTO()
-		{
-			List<ClientDTO> clientsDTO = Clients.Select(c => (ClientDTO)c.ConvertirEnDTO()).ToList();
+        public override BanqueDTO ConvertirEnDTO()
+        {
+            return new BanqueDTO
+            {
+                Nom = Nom,
+                Clients = GetClientsDto(),
+                Comptes = GetComptesDto()
+            };
+        }
 
-			return new BanqueDTO { Clients = clientsDTO, Comptes = GetCompteDTO() };
-		}
+        private List<ClientDTO> GetClientsDto()
+        {
+            return Clients.Select(c => (ClientDTO)c.ConvertirEnDTO()).ToList();
+        }
 
-		private List<ClientDTO> GetClientDTO()
-		{
-			return [];
-		}
-
-		private List<CompteDTO> GetCompteDTO()
-		{
-			return [];
-		}
-	}
+        private List<CompteDTO> GetComptesDto()
+        {
+            return Comptes.Select(c => (CompteDTO)c.ConvertirEnDTO()).ToList();
+        }
+    }
 }
