@@ -9,6 +9,7 @@ public class CompteTests
 {
     private readonly Mock<Compte> _compteMock = new("A001");
 
+    [TestMethod]
     public void Constructeur_SoldeInitial0_RetourneSolde0()
     {
         _compteMock.Object.Solde.Should().Be(0);
