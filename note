@@ -1,0 +1,23 @@
+Fonctionnalités à rendre
+Virement compte à compte interne.
+Virement vers un compte Externe.
+
+Qualité du lien Git : 1 / 1
+Trello et Qualité de l'information : 1 /1 
+Pull OK et compilation : 1 / 1
+Qualité des commentaires lors des push : 1 / 1
+TU présents : 1,5 / 2
+TI présents : 1,5 / 3
+Qualité et fonctionnement des TU : 1,5 / 2
+Qualité et fonctionnement des TI : 1,5 / 2
+Architecture MVC : 1 / 1 
+Présence de Mock : 1 / 2
+Création de WS : 1 / 1
+Clean code : 0,5 / 1
+Documentation : 1 / 1 
+Bonus Commit 20.05 : 0,5 / 1
+
+Note intérmédiaire du 20.05 : 13 / 20
+Note intermédiaire du 30/04 : 15 / 20
+
+Bon travail mais il manque l'intégration avec le service login.
